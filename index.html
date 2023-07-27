@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice -1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            background-color: #fbda03;
+        }
+
+        .tittle h1 {
+            text-align: center;
+            color: #12296c;
+        }
+
+        .frame {
+            min-height: 60vh;
+            width: 300px;
+            border: 2px solid black;
+            margin: 50px auto;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column-reverse;
+            box-sizing: content-box;
+            overflow: hidden;
+            white-space: wrap;
+        }
+
+        .btn {
+            height: 30px;
+            width: 100px;
+            border-radius: 30px;
+            cursor: pointer;
+            background-color: #fbda03;
+            margin: 10px auto;
+            position: relative;
+
+        }
+
+        .btn:hover {
+            background-color: #12296c;
+            color: #ffffff;
+
+        }
+
+        .para p{
+            text-align: center;
+            position: relative;
+            bottom: 100px;
+            color: #12296c;
+            font-size: 1.2rem;
+            margin:15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tittle">
+            <h1>Laughter Anywhere</h1>
+        </div>
+        <div class="frame">
+            <button id="btn" class="btn" onclick="nextjoke()">Next Jokes</button>
+            <div class="para" id="para">
+                <p id="que"><br></p>
+                <p id="ans"></p>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        let que = document.getElementById("que");
+        let ans = document.getElementById("ans");
+        let url = "https://official-joke-api.appspot.com/random_joke";
+        let data = fetch(url);
+        data.then((response) => {
+                return response.json();
+            }).then((data) => {
+               que.innerHTML=`Question:${data.setup}`;
+               ans.innerHTML=`Answer:${data.punchline}`;
+            })
+        function nextjoke(){
+            location.reload();
+            data.then((response) => {
+                return response.json();
+            }).then((data) => {
+               que.innerHTML=`Question:${data.setup}`;
+               ans.innerHTML=`Answer:${data.punchline}`;
+            })
+        }
+    </script>
+</body>
+
+</html>
